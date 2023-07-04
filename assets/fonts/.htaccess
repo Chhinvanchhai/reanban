@@ -1,0 +1,3 @@
+Options -Indexes
+IndexIgnore *.ttf *.woff *.woff2 *.eot, *.otf *.cff *.afm *.lwfn
+IndexIgnore *.ffil *.fon *.pfm *.pfb *.svg *.std *.pro *.xsf
