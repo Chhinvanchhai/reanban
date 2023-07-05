@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reanban/routes/route.dart';
+import 'package:reanban/themes/themes.dart';
 import 'package:window_manager/window_manager.dart';
 import '../translation/traslations.dart';
 import 'constants.dart';
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialRoute: '/',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: bgColor,
-      ),
+      themeMode: ThemeMode.system,
+      theme: ThemeClass.lightTheme,
+      darkTheme: ThemeClass.darkTheme,
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.native,
       translations: MyTranslations(),

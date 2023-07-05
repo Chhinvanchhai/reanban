@@ -60,10 +60,10 @@ class AddPost extends StatelessWidget {
     if (index > -1) {
       print(todoController.posts[index].name + index.toString());
       name = todoController.posts[index].name;
-      age = todoController.posts[index].age;
-      phone = todoController.posts[index].phone;
-      email = todoController.posts[index].email;
-      address = todoController.posts[index].address;
+      age = todoController.posts[index].age ?? 0;
+      phone = todoController.posts[index].phone ?? "99";
+      email = todoController.posts[index].email ?? "maim";
+      address = todoController.posts[index].address ?? "kamport";
       id = todoController.posts[index].id as int;
       nameController.text = name;
       ageController.text = age.toString();
@@ -71,10 +71,11 @@ class AddPost extends StatelessWidget {
       phoneController.text = phone;
       addressController.text = address;
     }
+    print("index: " + index.toString());
 
     // TextEditingController idController = TextEditingController();
     return Scaffold(
-      appBar: AppBar(title: index > -1 ? Text('Add New post') : Text('Edit')),
+      appBar: AppBar(title: index == -1 ? Text('Add New post') : Text('Edit')),
       body: Padding(
         padding: EdgeInsets.all(8.0),
         child: Column(
@@ -114,7 +115,7 @@ class AddPost extends StatelessWidget {
                   phone = text;
                 },
                 decoration: InputDecoration(hintText: 'Phone')),
-            index > -1
+            index == -1
                 ? TextButton(onPressed: () => addPest(), child: Text('Add'))
                 : TextButton(
                     onPressed: () => updatePost(), child: Text('Update')),

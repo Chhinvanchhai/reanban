@@ -1,6 +1,9 @@
+import 'package:reanban/screens/about.dart';
 import 'package:reanban/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:reanban/screens/guide.dart';
 import 'package:reanban/screens/header.dart';
+import 'package:reanban/screens/profile.dart';
 import 'components/side_menu.dart';
 import '../../responsive.dart';
 
@@ -11,6 +14,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  var indexPage = 0;
+  List pages = [Dashboard(), Profile(), About(), Guide()];
 
   void _openDrawer() {
     _scaffoldKey.currentState!.openDrawer();
@@ -23,6 +28,13 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+  }
+
+  void handlePage(id) {
+    setState(() {
+      indexPage = id;
+    });
+    _scaffoldKey.currentState!.closeDrawer();
   }
 
   @override
@@ -40,8 +52,11 @@ class _MainScreenState extends State<MainScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (Responsive.isDesktop(context))
-                      Container(child: SideMenu()),
-                    Expanded(flex: 2, child: Dashboard())
+                      Container(
+                          child: SideMenu(
+                        menuClick: (id) => handlePage(id),
+                      )),
+                    Expanded(flex: 2, child: pages[indexPage])
                   ],
                 ),
               )
@@ -49,6 +64,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         drawerEnableOpenDragGesture: false,
-        drawer: SideMenu());
+        drawer: SideMenu(menuClick: (id) => handlePage(id)));
   }
 }

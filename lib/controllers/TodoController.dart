@@ -32,27 +32,24 @@ class TodoController extends GetxController {
   }
 
   Future<void> getAllPost(p) async {
-    var endpointUrl = 'http://192.168.0.22:3000/guide?page=' + p.toString();
+    var endpointUrl =
+        'http://localhost:3000/admin/products/pagination?page=' + p.toString();
     final response = await http.get(Uri.parse(endpointUrl));
     isLoadMore = true;
     // update();
     if (response.statusCode == 200) {
       var jsonString = response.body;
       final jsonMap = jsonDecode(jsonString);
-      if ((jsonMap['data'] as List).isEmpty) {
+      print('data have respone ==== $jsonMap');
+
+      if ((jsonMap as List).isEmpty) {
         isLoadMore = false;
         page = page - 1;
-        // update();
       }
-      print('data have respone ==== $jsonMap');
       if (p > 1) {
-        posts.addAll(
-            (jsonMap['data'] as List).map((i) => Todo2.fromJson(i)).toList());
+        posts.addAll((jsonMap as List).map((i) => Todo2.fromJson(i)).toList());
       } else {
-        posts = (jsonMap['data'] as List)
-            .map((i) => Todo2.fromJson(i))
-            .toList()
-            .obs;
+        posts = (jsonMap as List).map((i) => Todo2.fromJson(i)).toList().obs;
       }
 
       update();
@@ -64,7 +61,7 @@ class TodoController extends GetxController {
   Future<bool> delete(index, mydata) async {
     try {
       final response = await http.delete(
-        Uri.parse('http://192.168.0.22:3000/guide'),
+        Uri.parse('http://localhost:3000/admin/products'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -94,7 +91,7 @@ class TodoController extends GetxController {
   Future<int> addPost(mydata) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.0.22:3000/guide'),
+        Uri.parse('http://localhost:3000/admin/products'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -123,14 +120,14 @@ class TodoController extends GetxController {
   Future<int> updatePost(mydata) async {
     try {
       final response = await http.post(
-        Uri.parse('http://192.168.0.22:3000/guide'),
+        Uri.parse('http://localhost:3000/admin/products'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, dynamic>{
           'id': mydata.id,
           'name': mydata.name,
-          'email': mydata.email,
+          'sk': mydata.email,
           'phone': mydata.phone,
           'address': mydata.address,
           'age': mydata.age

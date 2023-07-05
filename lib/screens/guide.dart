@@ -155,8 +155,7 @@ class Guide extends StatelessWidget {
                       child: ListTile(
                         title: Text(
                           todoController.posts[index].name,
-                          style:
-                              TextStyle(color: Theme.of(context).primaryColor),
+                          style: TextStyle(color: Colors.white),
                         ),
                         subtitle: Text('Last edited on '),
                         onTap: () {

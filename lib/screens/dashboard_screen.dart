@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:reanban/constants.dart';
 import './header.dart';
 
 class Dashboard extends StatelessWidget {
@@ -7,8 +9,11 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Dashboard"),
+      ),
       body: Container(
-        child: Column(children: []),
+        child: Column(children: [Text("homee")]),
       ),
     );
   }
