@@ -37,6 +37,7 @@ class _SideMenuState extends State<SideMenu> {
   Widget build(BuildContext context) {
     return Drawer(
       // backgroundColor: !isDark ? bgDark : bgLight,
+      width: 240,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -72,10 +73,10 @@ class _SideMenuState extends State<SideMenu> {
               },
             ),
             DrawerListTile(
-              title: 'store',
+              title: 'Home',
               dark: isDark,
               svgIcon: 'assets/icons/menu_store.svg',
-              press: () => {print('Click List')},
+              press: () => {Get.toNamed('/home')},
             ),
             DrawerListTile(
               title: 'notifications',
@@ -89,12 +90,12 @@ class _SideMenuState extends State<SideMenu> {
               svgIcon: 'assets/icons/menu_setting.svg',
               press: () => {print('Click List')},
             ),
-            ElevatedButton(
-              child: Text("Change Theme"),
-              onPressed: () {
-                changeTheme();
-              },
-            ),
+            // ElevatedButton(
+            //   child: Text("Change Theme"),
+            //   onPressed: () {
+            //     changeTheme();
+            //   },
+            // ),
             ElevatedButton(
               child: Text('English'),
               onPressed: () {
