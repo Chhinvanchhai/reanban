@@ -33,7 +33,8 @@ class TodoController extends GetxController {
 
   Future<void> getAllPost(p) async {
     var endpointUrl =
-        'http://localhost:3000/admin/products/pagination?page=' + p.toString();
+        'http://172.17.176.1:8000/admin/products/pagination?page=' +
+            p.toString();
     final response = await http.get(Uri.parse(endpointUrl));
     isLoadMore = true;
     // update();
@@ -61,19 +62,16 @@ class TodoController extends GetxController {
   Future<bool> delete(index, mydata) async {
     try {
       final response = await http.delete(
-        Uri.parse('http://localhost:3000/admin/products'),
+        Uri.parse(
+            'http://172.17.176.1:8000/admin/products/${mydata.id.toString()}'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, String>{
-          'id': mydata.id.toString(),
-        }),
       );
       print('response code ${response.statusCode}');
       if (response.statusCode == 200) {
-        var res = jsonDecode(response.body);
-        print(res['data']);
-        if (res['data']['affectedRows'] == 0) {
+        // var res = jsonDecode(response.body);
+        if (response.statusCode != 200) {
           return false;
         } else {
           this.posts.removeAt(index);
@@ -91,7 +89,7 @@ class TodoController extends GetxController {
   Future<int> addPost(mydata) async {
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:3000/admin/products'),
+        Uri.parse('http://172.17.176.1:8000/admin/products'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -120,7 +118,7 @@ class TodoController extends GetxController {
   Future<int> updatePost(mydata) async {
     try {
       final response = await http.post(
-        Uri.parse('http://localhost:3000/admin/products'),
+        Uri.parse('http://172.17.176.1:8000/admin/products'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -151,7 +149,7 @@ class TodoController extends GetxController {
     print('Keyworld == ${keyword}');
     late var response;
     if (keyword != '') {
-      var endpointUrl = 'http://192.168.0.22:3000/search?key=' + keyword;
+      var endpointUrl = 'http://172.17.176.1:8000/search?key=' + keyword;
       response = await http.get(Uri.parse(endpointUrl));
       if (response.statusCode == 200) {
         var jsonString = response.body;
@@ -166,7 +164,7 @@ class TodoController extends GetxController {
         throw Exception;
       }
     } else {
-      var endpointUrl = 'http://192.168.0.22:3000/search?key=' + keyword;
+      var endpointUrl = 'http://172.17.176.1:8000/search?key=' + keyword;
       response = await http.get(Uri.parse(endpointUrl));
       if (response.statusCode == 200) {
         var jsonString = response.body;

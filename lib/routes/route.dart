@@ -28,13 +28,14 @@ List<GetPage> routes = [
   GetPage(
     name: '/home',
     // transition: Transition.cupertino,
-    customTransition: SizeTransitions(),
+    // customTransition: SizeTransitions(),
+    transition: Transition.fadeIn,
     page: () => HomeScreen(),
   ),
   GetPage(
     name: '/resort',
     // transition: Transition.cupertino,
-    customTransition: SizeTransitions(),
+    transition: Transition.fadeIn,
     page: () => Guide(),
   ),
 ];
