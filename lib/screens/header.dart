@@ -41,12 +41,16 @@ class _HeaderState extends State<Header> {
           if (!Responsive.isMobile(context))
             Text(
               'Dashboard',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           if (!Responsive.isMobile(context))
             Spacer(
-              flex: Responsive.isDesktop(context) ? 2 : 1,
+              flex: Responsive.isDesktop(context) ? 1 : 1,
             ),
+          const Expanded(child: SearchField()),
+          const SizedBox(
+            width: defaultPadding,
+          ),
           Row(
             children: const [
               H1(title: "account"),
@@ -57,13 +61,16 @@ class _HeaderState extends State<Header> {
               SizedBox(width: defaultPadding),
             ],
           ),
-          Expanded(child: SearchField()),
-          ProfileCard(),
+          // const ProfileCard(),
           IconButton(onPressed: () {}, icon: Icon(Icons.notification_add)),
-          SizedBox(
+          const SizedBox(
             width: defaultPadding / 2,
           ),
-          Langauge()
+          const Langauge(),
+          const SizedBox(
+            width: defaultPadding / 2,
+          ),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.logout)),
         ],
       ),
     );
