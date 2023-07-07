@@ -1,8 +1,12 @@
 # reanban
-
-A new Flutter project.
-
-## Getting Started
+## Author: Chhin Vanchhai
+## Email: chhvanchhai2@gmail.com
+## Content
+### This project can work for Android, IOS, Windows, macOS, Web, Windows
+```
+This project also available for dark mode
+```
+### Getting Started
 
 This project is a starting point for a Flutter application.
 

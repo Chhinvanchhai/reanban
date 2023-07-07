@@ -14,7 +14,6 @@ class StorageDetail extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(defaultPadding),
       decoration: const BoxDecoration(
-          color: secondaryColor,
           borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Column(
         children: const [
@@ -25,7 +24,6 @@ class StorageDetail extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 18.0,
-                color: Colors.white,
               ),
             ),
           ),

@@ -41,17 +41,13 @@ class StorageInfo extends StatelessWidget {
                       title,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          color: Colors.white, fontSize: 16, height: 1),
+                      style: TextStyle(fontSize: 16, height: 1),
                     ),
                     Text(
                       amountFile,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          color: Colors.white.withOpacity(0.5),
-                          fontSize: 12,
-                          height: 1),
+                      style: TextStyle(fontSize: 12, height: 1),
                     )
                   ]),
             ),

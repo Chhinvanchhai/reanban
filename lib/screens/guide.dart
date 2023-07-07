@@ -10,9 +10,6 @@ class Guide extends StatelessWidget {
   Widget build(BuildContext context) {
     final _controller = TextEditingController();
     return Scaffold(
-        appBar: AppBar(
-          title: Text('GetX Todo List'),
-        ),
         floatingActionButton: FloatingActionButton(
           heroTag: "btn1",
           child: Icon(Icons.add),

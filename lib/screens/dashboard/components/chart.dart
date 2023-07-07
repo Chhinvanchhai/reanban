@@ -25,10 +25,10 @@ class Chart extends StatelessWidget {
                   height: defaultPadding,
                 ),
                 Text("38",
-                    style: Theme.of(context).textTheme.headline3?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        height: 0.8)),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3
+                        ?.copyWith(fontWeight: FontWeight.w500, height: 0.8)),
                 Text('Of 128G')
               ],
             ),

@@ -24,7 +24,9 @@ class Dashboard extends StatelessWidget {
                     child: Container(
                       margin: EdgeInsets.all(defaultPadding / 2),
                       width: double.infinity,
-                      child: StorageDetail(),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondary),
+                      child: const StorageDetail(),
                     ),
                   ),
                   Div(
@@ -33,7 +35,8 @@ class Dashboard extends StatelessWidget {
                       margin: EdgeInsets.all(defaultPadding / 2),
                       width: double.infinity,
                       height: 300,
-                      decoration: BoxDecoration(color: secondaryColor),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                   Div(
@@ -42,7 +45,8 @@ class Dashboard extends StatelessWidget {
                       margin: EdgeInsets.all(defaultPadding / 2),
                       width: double.infinity,
                       height: 300,
-                      decoration: BoxDecoration(color: secondaryColor),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                   Div(
@@ -51,7 +55,8 @@ class Dashboard extends StatelessWidget {
                       margin: EdgeInsets.all(defaultPadding / 2),
                       width: double.infinity,
                       height: 300,
-                      decoration: BoxDecoration(color: secondaryColor),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ),
                   Div(
@@ -60,7 +65,8 @@ class Dashboard extends StatelessWidget {
                       margin: EdgeInsets.all(defaultPadding / 2),
                       width: double.infinity,
                       height: 300,
-                      decoration: BoxDecoration(color: secondaryColor),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   )
                 ]),
