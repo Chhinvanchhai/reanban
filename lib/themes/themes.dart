@@ -26,7 +26,7 @@ class ThemeClass {
       scaffoldBackgroundColor: Colors.black,
       colorScheme: const ColorScheme.dark().copyWith(
           secondary: const Color(0xFF101427),
-          primary: Color.fromARGB(255, 168, 167, 167),
+          primary: const Color.fromARGB(255, 168, 167, 167),
           onBackground: bgDark),
       textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.white),
