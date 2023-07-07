@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.native,
       translations: MyTranslations(),
-      locale: Locale('kh', 'KH'),
+      locale: const Locale('en', 'UK'),
       getPages: routes,
     );
   }

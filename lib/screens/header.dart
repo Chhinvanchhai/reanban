@@ -4,6 +4,8 @@ import 'package:reanban/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:reanban/utils/h1.dart';
+import 'package:reanban/widgets/language.dart';
 
 class Header extends StatefulWidget {
   const Header({
@@ -28,24 +30,42 @@ class _HeaderState extends State<Header> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        if (!Responsive.isDesktop(context))
-          IconButton(
-              onPressed: () => Scaffold.of(context).openDrawer(),
-              icon: Icon(Icons.menu)),
-        if (!Responsive.isMobile(context))
-          Text(
-            'Dashboard',
-            style: Theme.of(context).textTheme.headline6,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: defaultPadding / 2),
+      child: Row(
+        children: [
+          if (!Responsive.isDesktop(context))
+            IconButton(
+                onPressed: () => Scaffold.of(context).openDrawer(),
+                icon: Icon(Icons.menu)),
+          if (!Responsive.isMobile(context))
+            Text(
+              'Dashboard',
+              style: Theme.of(context).textTheme.headline6,
+            ),
+          if (!Responsive.isMobile(context))
+            Spacer(
+              flex: Responsive.isDesktop(context) ? 2 : 1,
+            ),
+          Row(
+            children: const [
+              H1(title: "account"),
+              SizedBox(width: defaultPadding),
+              H1(title: "settings"),
+              SizedBox(width: defaultPadding),
+              H1(title: "history"),
+              SizedBox(width: defaultPadding),
+            ],
           ),
-        if (!Responsive.isMobile(context))
-          Spacer(
-            flex: Responsive.isDesktop(context) ? 2 : 1,
+          Expanded(child: SearchField()),
+          ProfileCard(),
+          IconButton(onPressed: () {}, icon: Icon(Icons.notification_add)),
+          SizedBox(
+            width: defaultPadding / 2,
           ),
-        Expanded(child: SearchField()),
-        ProfileCard()
-      ],
+          Langauge()
+        ],
+      ),
     );
   }
 }
@@ -59,9 +79,9 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.only(left: defaultPadding),
-      padding: EdgeInsets.symmetric(
-          horizontal: defaultPadding, vertical: defaultPadding / 3),
+      height: defaultHeight,
+      margin: const EdgeInsets.only(left: defaultPadding),
+      padding: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
       decoration: BoxDecoration(
           color: secondaryColor,
           border: Border.all(color: Colors.white),
@@ -70,17 +90,8 @@ class ProfileCard extends StatelessWidget {
         children: [
           Image.asset(
             'assets/images/profile_pic.png',
-            height: 36.0,
+            height: 24.0,
           ),
-          if (!Responsive.isMobile(context))
-            Padding(
-              padding: const EdgeInsets.all(defaultPadding / 2.0),
-              child: Text(
-                'Vanchhai',
-                style: TextStyle(),
-              ),
-            ),
-          Icon(Icons.keyboard_arrow_down)
         ],
       ),
     );
@@ -94,25 +105,30 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
+    return const SizedBox(
+      height: 40,
+      child: TextField(
+        decoration: InputDecoration(
           hintText: 'Search',
           fillColor: secondaryColor,
           filled: true,
+          contentPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
           border: OutlineInputBorder(
               borderSide: BorderSide.none,
-              borderRadius: const BorderRadius.all(Radius.circular(10.0))),
-          suffixIcon: InkWell(
-            onTap: () => {print("Search Botton Click")},
-            child: Container(
-              padding: EdgeInsets.all(defaultPadding * 0.75),
-              margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              decoration: BoxDecoration(
-                  color: primaryColor,
-                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-              child: SvgPicture.asset('assets/icons/Search.svg'),
-            ),
-          )),
+              borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          // suffixIcon: InkWell(
+          //   onTap: () => {print("Search Botton Click")},
+          //   child: Container(
+          //     padding: EdgeInsets.all(defaultPadding * 0.75),
+          //     margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+          //     decoration: BoxDecoration(
+          //         color: primaryColor,
+          //         borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          //     child: SvgPicture.asset('assets/icons/Search.svg'),
+          //   ),
+          // )
+        ),
+      ),
     );
   }
 }

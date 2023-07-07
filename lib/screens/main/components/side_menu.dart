@@ -94,18 +94,18 @@ class _SideMenuState extends State<SideMenu> {
             //     changeTheme();
             //   },
             // ),
-            ElevatedButton(
-              child: Text('English'),
-              onPressed: () {
-                Get.updateLocale(Locale('en', 'UK'));
-              },
-            ),
-            ElevatedButton(
-              child: Text('Khmer'),
-              onPressed: () {
-                Get.updateLocale(Locale('kh', 'KH'));
-              },
-            ),
+            // ElevatedButton(
+            //   child: Text('English'),
+            //   onPressed: () {
+            //     Get.updateLocale(Locale('en', 'UK'));
+            //   },
+            // ),
+            // ElevatedButton(
+            //   child: Text('Khmer'),
+            //   onPressed: () {
+            //     Get.updateLocale(Locale('kh', 'KH'));
+            //   },
+            // ),
           ],
         ),
       ),
@@ -134,7 +134,7 @@ class DrawerListTile extends StatelessWidget {
       horizontalTitleGap: 0.0,
       leading: SvgPicture.asset(
         svgIcon,
-        // color: !dark ? colorDark : colorLight,
+        color: dark ? colorDark : colorLight,
         height: 16,
       ),
       title: Text(

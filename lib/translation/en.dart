@@ -9,5 +9,8 @@ Map<String, String> get en => {
       "setting": "Setting",
       "dashboard": "Dashboard",
       "notifications": "Notifications",
-      "store": "Store"
+      "store": "Store",
+      "settings": "Settings",
+      "account": "Accounts",
+      "history": "History",
     };

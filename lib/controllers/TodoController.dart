@@ -41,7 +41,7 @@ class TodoController extends GetxController {
     if (response.statusCode == 200) {
       var jsonString = response.body;
       final jsonMap = jsonDecode(jsonString);
-      print('data have respone ==== $jsonMap');
+      // print('data have respone ==== $jsonMap');
 
       if ((jsonMap as List).isEmpty) {
         isLoadMore = false;
@@ -131,12 +131,10 @@ class TodoController extends GetxController {
           'age': mydata.age
         }),
       );
-      print('response code ${response.statusCode}');
-      if (response.statusCode == 200) {
-        var res = jsonDecode(response.body);
-        print(res['data']);
+      if (response.statusCode == 201) {
+        // var res = jsonDecode(response.body);
         getAllPost(page);
-        return res['data']['affectedRows'];
+        return 1;
       } else {
         return 0;
       }
@@ -146,36 +144,33 @@ class TodoController extends GetxController {
   }
 
   Future<void> search(String keyword) async {
-    print('Keyworld == ${keyword}');
+    print('Keyworld ==${keyword}');
     late var response;
     if (keyword != '') {
-      var endpointUrl = 'http://172.17.176.1:8000/search?key=' + keyword;
+      var endpointUrl =
+          'http://172.17.176.1:8000/admin/products/pagination?key=' + keyword;
       response = await http.get(Uri.parse(endpointUrl));
       if (response.statusCode == 200) {
         var jsonString = response.body;
         final jsonMap = jsonDecode(jsonString);
-        posts = (jsonMap['data'] as List)
-            .map((i) => Todo2.fromJson(i))
-            .toList()
-            .obs;
-        isLoadMore = false;
+        posts = (jsonMap as List).map((i) => Todo2.fromJson(i)).toList().obs;
         update();
+        isLoadMore = false;
       } else {
-        throw Exception;
+        throw Exception('Failed to load album');
       }
     } else {
-      var endpointUrl = 'http://172.17.176.1:8000/search?key=' + keyword;
+      var endpointUrl =
+          'http://172.17.176.1:8000/admin/products/pagination?key=' + keyword;
       response = await http.get(Uri.parse(endpointUrl));
       if (response.statusCode == 200) {
         var jsonString = response.body;
         final jsonMap = jsonDecode(jsonString);
-        posts = (jsonMap['data'] as List)
-            .map((i) => Todo2.fromJson(i))
-            .toList()
-            .obs;
+        posts = (jsonMap as List).map((i) => Todo2.fromJson(i)).toList().obs;
         update();
+        isLoadMore = false;
       } else {
-        throw Exception;
+        throw Exception('Failed to load album');
       }
     }
   }

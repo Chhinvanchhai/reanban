@@ -1,6 +1,6 @@
 import 'package:reanban/animation/size_transition.dart';
 import 'package:reanban/screens/about.dart';
-import 'package:reanban/screens/dashboard_screen.dart';
+import 'package:reanban/screens/dashboard/dashboard_screen.dart';
 import 'package:reanban/screens/guide.dart';
 import 'package:reanban/screens/home/HomeScreen.dart';
 import 'package:reanban/screens/main/main_screen.dart';

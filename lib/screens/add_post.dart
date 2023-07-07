@@ -41,8 +41,9 @@ class AddPost extends StatelessWidget {
         phone: phone,
         id: id);
     var updatePost = await todoController.updatePost(data);
-    print('Date update repsone');
-    if (updatePost >= 1) {
+
+    print('Date update repsone==' + updatePost.toString());
+    if (updatePost == 1) {
       Get.back();
       Get.snackbar('Updated Successfull', 'Your data have been Updated!');
     } else {

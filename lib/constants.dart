@@ -9,3 +9,4 @@ const bgLight = Color.fromARGB(255, 223, 223, 223);
 const colorDark = Color.fromARGB(255, 255, 255, 255);
 const colorLight = Color(0xFF212332);
 const defaultPadding = 16.0;
+const defaultHeight = 40.0;

@@ -1,5 +1,6 @@
+import 'package:reanban/constants.dart';
 import 'package:reanban/screens/about.dart';
-import 'package:reanban/screens/dashboard_screen.dart';
+import 'package:reanban/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:reanban/screens/guide.dart';
 import 'package:reanban/screens/header.dart';
@@ -8,6 +9,8 @@ import 'components/side_menu.dart';
 import '../../responsive.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -45,8 +48,8 @@ class _MainScreenState extends State<MainScreen> {
         body: SafeArea(
           child: Column(
             children: [
-              if (Responsive.isMobile(context) || Responsive.isTablet(context))
-                const Header(),
+              // if (Responsive.isMobile(context) || Responsive.isTablet(context))
+
               Expanded(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,7 +59,17 @@ class _MainScreenState extends State<MainScreen> {
                           child: SideMenu(
                         menuClick: (id) => handlePage(id),
                       )),
-                    Expanded(flex: 2, child: pages[indexPage])
+                    Expanded(
+                        flex: 2,
+                        child: Column(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.all(defaultPadding),
+                              child: Header(),
+                            ),
+                            Expanded(child: pages[indexPage])
+                          ],
+                        ))
                   ],
                 ),
               )

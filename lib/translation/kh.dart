@@ -9,5 +9,8 @@ Map<String, String> get kh => {
       "setting": "ការកំណត់",
       "dashboard": "ផ្ទាំងគ្រប់គ្រង",
       "notifications": "ការជូនដំណឹង",
-      "store": "ហាង"
+      "store": "ហាង",
+      "settings": "ការកំណត់",
+      "account": "គណនី",
+      "history": "ប្រវត្តិសាស្ត្រ",
     };
