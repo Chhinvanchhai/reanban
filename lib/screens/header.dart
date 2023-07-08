@@ -1,9 +1,11 @@
+import 'package:get/get.dart';
 import 'package:reanban/constants.dart';
 import 'package:reanban/controllers/MenuController.dart';
 import 'package:reanban/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:reanban/screens/Login.dart';
 import 'package:reanban/utils/h1.dart';
 import 'package:reanban/widgets/language.dart';
 
@@ -18,6 +20,7 @@ class Header extends StatefulWidget {
 
 class _HeaderState extends State<Header> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  var navActive = 0;
   void _openDrawer() {
     if (scaffoldKey.currentState!.isDrawerOpen) {
       scaffoldKey.currentState!.closeDrawer();
@@ -26,6 +29,12 @@ class _HeaderState extends State<Header> {
       scaffoldKey.currentState!.closeDrawer();
       //open drawer, if drawer is closed
     }
+  }
+
+  void handClick(val) {
+    setState(() {
+      navActive = val;
+    });
   }
 
   @override
@@ -51,16 +60,47 @@ class _HeaderState extends State<Header> {
           const SizedBox(
             width: defaultPadding,
           ),
-          Row(
-            children: const [
-              H1(title: "account"),
-              SizedBox(width: defaultPadding),
-              H1(title: "settings"),
-              SizedBox(width: defaultPadding),
-              H1(title: "history"),
-              SizedBox(width: defaultPadding),
-            ],
-          ),
+          if (!Responsive.isMobile(context))
+            Row(
+              children: [
+                InkWell(
+                    child: H1(
+                      title: "account",
+                      style: TextStyle(
+                          color: navActive == 1
+                              ? Theme.of(context).colorScheme.onPrimary
+                              : null),
+                    ),
+                    onTap: () {
+                      handClick(1);
+                    }),
+                const SizedBox(width: defaultPadding),
+                InkWell(
+                    child: H1(
+                      title: "settings",
+                      style: TextStyle(
+                          color: navActive == 2
+                              ? Theme.of(context).colorScheme.onPrimary
+                              : null),
+                    ),
+                    onTap: () {
+                      handClick(2);
+                    }),
+                const SizedBox(width: defaultPadding),
+                InkWell(
+                    child: H1(
+                      title: "history",
+                      style: TextStyle(
+                          color: navActive == 3
+                              ? Theme.of(context).colorScheme.onPrimary
+                              : null),
+                    ),
+                    onTap: () {
+                      handClick(3);
+                    }),
+                const SizedBox(width: defaultPadding),
+              ],
+            ),
           // const ProfileCard(),
           IconButton(onPressed: () {}, icon: Icon(Icons.notification_add)),
           const SizedBox(
@@ -70,7 +110,11 @@ class _HeaderState extends State<Header> {
           const SizedBox(
             width: defaultPadding / 2,
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.logout)),
+          IconButton(
+              onPressed: () {
+                Get.offAll(const LoginScreen());
+              },
+              icon: const Icon(Icons.logout)),
         ],
       ),
     );

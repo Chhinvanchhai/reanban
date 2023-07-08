@@ -16,9 +16,10 @@ class ThemeClass {
           primary: const Color.fromARGB(255, 47, 74, 109),
           secondary: const Color.fromARGB(255, 225, 225, 226),
           background: bgLight,
+          onPrimary: const Color.fromARGB(255, 224, 161, 24),
           onBackground: Colors.white),
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 25, 78, 121),
       ));
 
   static ThemeData darkTheme = ThemeData(
@@ -27,6 +28,7 @@ class ThemeClass {
       colorScheme: const ColorScheme.dark().copyWith(
           secondary: const Color(0xFF101427),
           primary: const Color.fromARGB(255, 168, 167, 167),
+          onPrimary: Color.fromARGB(255, 224, 161, 24),
           onBackground: bgDark),
       textTheme: const TextTheme(
           bodyLarge: TextStyle(color: Colors.white),
@@ -36,6 +38,6 @@ class ThemeClass {
           displayMedium: TextStyle(color: Colors.white),
           displayLarge: TextStyle(color: Colors.white)),
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(255, 25, 78, 121),
       ));
 }
