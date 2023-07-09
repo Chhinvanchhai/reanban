@@ -64,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
                         child: Column(
                           children: [
                             const Padding(
-                              padding: EdgeInsets.all(defaultPadding),
+                              padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                               child: Header(),
                             ),
                             Expanded(child: pages[indexPage])

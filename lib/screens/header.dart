@@ -52,10 +52,11 @@ class _HeaderState extends State<Header> {
               'Dashboard',
               style: Theme.of(context).textTheme.titleLarge,
             ),
-          if (!Responsive.isMobile(context))
             Spacer(
               flex: Responsive.isDesktop(context) ? 1 : 1,
             ),
+       
+          if (!Responsive.isMobile(context))
           const Expanded(child: SearchField()),
           const SizedBox(
             width: defaultPadding,
