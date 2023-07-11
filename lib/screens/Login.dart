@@ -22,15 +22,25 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     var box = GetStorage();
     var res = await userController.logn(data);
-    // ignore: unrelated_type_equality_checks
     if (userController.statusCode == 201 || userController.statusCode == 200) {
-      Get.toNamed("/");
+      // Get.toNamed("/");
       box.write('user', res);
     } else {
+      if (userController.statusCode == 500) {
+        Get.snackbar(
+          "Error",
+          "server error",
+          duration: Duration(seconds: 3),
+        );
+        setState(() {
+          loading = false;
+        });
+        return;
+      }
       Get.snackbar('Failed', res["messages"][0],
           backgroundColor: Colors.orange);
     }
-        setState(() {
+    setState(() {
       loading = false;
     });
   }
@@ -106,9 +116,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: double.infinity,
                     height: defaultHeight,
                     child: Center(
-                      child: loading  ? const CircularProgressIndicator(color: Colors.red ) : H1(
-                        title: "Submit".toUpperCase(),
-                      ),
+                      child: loading
+                          ? const CircularProgressIndicator(color: Colors.red)
+                          : H1(
+                              title: "Submit".toUpperCase(),
+                            ),
                     ),
                     decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.secondary,

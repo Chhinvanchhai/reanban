@@ -11,7 +11,7 @@ import '../translation/traslations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (PlatformUtils.isDesktop) {
-    if (Platform.isWindows) {
+    if (Platform.isWindows || Platform.isMacOS) {
       await windowManager.ensureInitialized();
       WindowManager.instance.setMinimumSize(const Size(400, 600));
       WindowManager.instance.isMaximizable();
