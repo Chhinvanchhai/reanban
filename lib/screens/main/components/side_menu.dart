@@ -38,8 +38,10 @@ class _SideMenuState extends State<SideMenu> {
       width: 240,
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start , 
           children: [
-            DrawerHeader(child: Image.asset('assets/images/logo.png')),
+            // DrawerHeader(child: ),
+            Container(padding: EdgeInsets.only(top: defaultPadding),child: Image.asset('assets/images/logo.png', height: 50, width: 100)),
             DrawerListTile(
               title: 'dashboard',
               dark: isDark,

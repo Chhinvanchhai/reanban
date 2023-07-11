@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:reanban/routes/route.dart';
 import 'package:reanban/themes/themes.dart';
 import 'package:reanban/utils/platform_util.dart';
 import 'package:window_manager/window_manager.dart';
 import '../translation/traslations.dart';
-import 'constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +17,7 @@ void main() async {
       WindowManager.instance.isMaximizable();
     }
   }
-
+  await GetStorage.init();
   runApp(MyApp());
 }
 

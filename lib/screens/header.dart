@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:reanban/constants.dart';
 import 'package:reanban/controllers/MenuController.dart';
 import 'package:reanban/responsive.dart';
@@ -40,13 +41,13 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: defaultPadding / 2),
+      padding:  EdgeInsets.only(bottom: defaultPadding / 2, top: Responsive.isDesktop(context) ? defaultPadding / 2 : 4),
       child: Row(
         children: [
           if (!Responsive.isDesktop(context))
             IconButton(
                 onPressed: () => Scaffold.of(context).openDrawer(),
-                icon: Icon(Icons.menu)),
+                icon: const Icon(Icons.menu)),
           if (!Responsive.isMobile(context))
             Text(
               'Dashboard',
@@ -103,7 +104,7 @@ class _HeaderState extends State<Header> {
               ],
             ),
           // const ProfileCard(),
-          IconButton(onPressed: () {}, icon: Icon(Icons.notification_add)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notification_add)),
           const SizedBox(
             width: defaultPadding / 2,
           ),
@@ -113,6 +114,7 @@ class _HeaderState extends State<Header> {
           ),
           IconButton(
               onPressed: () {
+                GetStorage().write('user', null);
                 Get.offAll(const LoginScreen());
               },
               icon: const Icon(Icons.logout)),

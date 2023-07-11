@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:reanban/animation/size_transition.dart';
 import 'package:reanban/screens/Login.dart';
 import 'package:reanban/screens/about.dart';
@@ -11,7 +13,11 @@ import 'package:get/get.dart';
 List<GetPage> routes = [
   //Simple GetPage
   GetPage(name: '/login', page: () => LoginScreen()),
-  GetPage(name: '/', page: () => MainScreen()),
+  GetPage(
+    name: '/',
+    page: () => MainScreen(),
+    middlewares: [AuthMiddleware()],
+  ),
   // GetPage with custom transitions and bindings
   GetPage(
       name: '/dashboard',
@@ -44,19 +50,19 @@ List<GetPage> routes = [
 ];
 
 class AuthMiddleware extends GetMiddleware {
-  // static bool checkUser() {
-  //   final box = GetStorage();
-  //   // box.write('user', null);
-  //   var user;
-  //   if (box.read('user') != null) {
-  //     user = box.read('user') as Map;
-  //     print(user);
-  //     return true;
-  //   }
-  //   return false;
-  // }
+  static bool checkUser() {
+    final box = GetStorage();
+    // box.write('user', null);
+    var user;
+    if (box.read('user') != null) {
+      user = box.read('user') as Map;
+      print(user);
+      return true;
+    }
+    return false;
+  }
 
-  // RouteSettings? redirect(String? route) {
-  //   return !checkUser() ? const RouteSettings(name: "/") : null;
-  // }
+  RouteSettings? redirect(String? route) {
+    return !checkUser() ? const RouteSettings(name: "/login") : null;
+  }
 }
