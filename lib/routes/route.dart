@@ -56,7 +56,7 @@ class AuthMiddleware extends GetMiddleware {
     var user;
     if (box.read('user') != null) {
       user = box.read('user') as Map;
-      print(user);
+      print(GetStorage().read('user')['token']);
       return true;
     }
     return false;

@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (userController.statusCode == 201 || userController.statusCode == 200) {
       Get.toNamed("/");
       box.write('user', res);
+      box.write('token', res['token']);
     } else {
       if (userController.statusCode == 500) {
         Get.snackbar(

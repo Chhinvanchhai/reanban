@@ -2,7 +2,7 @@ class Feed {
   String? title;
   String? description;
   String? content;
-  String? image;
+  String image;
   int? view;
   int? commentId;
   int? userId;
@@ -12,7 +12,7 @@ class Feed {
     this.title,
     this.description,
     this.content,
-    this.image,
+    required this.image,
     this.view,
     this.commentId,
     this.userId,
@@ -21,10 +21,10 @@ class Feed {
 
   factory Feed.fromJson(Map<String, dynamic> json) {
     return Feed(
-        title: json['title'],
+        title: json['name'],
         description: json['description'],
         content: json['content'],
-        image: json['image'],
+        image: json['image']?.length > 0 ? json['image'][0]['path'] : '',
         view: json['view'],
         commentId: json['commentId'],
         userId: json['userId'],
