@@ -13,4 +13,5 @@ Map<String, String> get en => {
       "settings": "Settings",
       "account": "Accounts",
       "history": "History",
+      "feed": "Feed",
     };

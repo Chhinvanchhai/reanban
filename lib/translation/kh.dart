@@ -13,4 +13,5 @@ Map<String, String> get kh => {
       "settings": "ការកំណត់",
       "account": "គណនី",
       "history": "ប្រវត្តិសាស្ត្រ",
+      "feed": "មតិព័ត៌មានថ្មី"
     };

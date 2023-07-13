@@ -12,6 +12,7 @@ class SideMenu extends StatefulWidget {
 
 class _SideMenuState extends State<SideMenu> {
   var isDark = Get.isDarkMode;
+  var selectedIndex = 0;
   void changeTheme() {
     setState(() {
       isDark = Get.isDarkMode;
@@ -28,6 +29,9 @@ class _SideMenuState extends State<SideMenu> {
   }
 
   void menuClick(id) {
+    setState(() {
+      selectedIndex = id;
+    });
     widget.menuClick(id);
   }
 
@@ -38,18 +42,23 @@ class _SideMenuState extends State<SideMenu> {
       width: 240,
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start , 
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // DrawerHeader(child: ),
-            Container(padding: EdgeInsets.only(top: defaultPadding),child: Image.asset('assets/images/logo.png', height: 50, width: 100)),
+            Container(
+                padding: EdgeInsets.only(top: defaultPadding),
+                child: Image.asset('assets/images/logo.png',
+                    height: 80, width: 130)),
             DrawerListTile(
+              selected: selectedIndex == 0 ? true : false,
               title: 'dashboard',
               dark: isDark,
               svgIcon: 'assets/icons/menu_dashbord.svg',
               press: () => menuClick(0),
             ),
             DrawerListTile(
-              title: 'about',
+              selected: selectedIndex == 1 ? true : false,
+              title: 'feed',
               dark: isDark,
               svgIcon: 'assets/icons/menu_tran.svg',
               press: () {
@@ -58,6 +67,7 @@ class _SideMenuState extends State<SideMenu> {
             ),
             DrawerListTile(
               title: 'profile',
+              selected: selectedIndex == 2 ? true : false,
               dark: isDark,
               svgIcon: 'assets/icons/menu_task.svg',
               press: () {
@@ -67,12 +77,14 @@ class _SideMenuState extends State<SideMenu> {
             DrawerListTile(
               title: 'guide',
               dark: isDark,
+              selected: selectedIndex == 3 ? true : false,
               svgIcon: 'assets/icons/menu_doc.svg',
               press: () {
                 menuClick(3);
               },
             ),
             DrawerListTile(
+              selected: selectedIndex == 4 ? true : false,
               title: 'Home',
               dark: isDark,
               svgIcon: 'assets/icons/menu_store.svg',
@@ -81,11 +93,13 @@ class _SideMenuState extends State<SideMenu> {
             DrawerListTile(
               title: 'notifications',
               dark: isDark,
+              selected: selectedIndex == 5 ? true : false,
               svgIcon: 'assets/icons/menu_dashbord.svg',
               press: () => {print('Click List')},
             ),
             DrawerListTile(
               title: 'setting',
+              selected: selectedIndex == 6 ? true : false,
               dark: isDark,
               svgIcon: 'assets/icons/menu_setting.svg',
               press: () => {print('Click List')},
@@ -118,22 +132,28 @@ class _SideMenuState extends State<SideMenu> {
 }
 
 class DrawerListTile extends StatelessWidget {
-  const DrawerListTile({
+  DrawerListTile({
     Key? key,
     required this.title,
     required this.svgIcon,
     required this.press,
     required this.dark,
+    required this.selected,
   }) : super(key: key);
   final String title, svgIcon;
   final VoidCallback press;
   final dark;
+  bool selected;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: press,
+      selected: selected,
       horizontalTitleGap: 0.0,
+      hoverColor: Theme.of(context).colorScheme.onPrimary,
+      selectedTileColor: Theme.of(context).colorScheme.onPrimary,
+      selectedColor: Theme.of(context).colorScheme.secondary,
       leading: SvgPicture.asset(
         svgIcon,
         color: dark ? colorDark : colorLight,

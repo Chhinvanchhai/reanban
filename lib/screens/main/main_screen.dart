@@ -1,11 +1,12 @@
 import 'package:reanban/constants.dart';
 import 'package:reanban/screens/about.dart';
+import 'package:reanban/screens/dashboard/Feed/feed.dart';
 import 'package:reanban/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:reanban/screens/guide.dart';
 import 'package:reanban/screens/header.dart';
-import 'package:reanban/screens/profile.dart';
 import 'components/side_menu.dart';
+
 import '../../responsive.dart';
 
 class MainScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var indexPage = 0;
-  List pages = [Dashboard(), Profile(), About(), Guide()];
+  List pages = [Dashboard(), FeedScreen(), About(), Guide()];
 
   void _openDrawer() {
     _scaffoldKey.currentState!.openDrawer();
@@ -64,7 +65,8 @@ class _MainScreenState extends State<MainScreen> {
                         child: Column(
                           children: [
                             const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: defaultPadding),
                               child: Header(),
                             ),
                             Expanded(child: pages[indexPage])
