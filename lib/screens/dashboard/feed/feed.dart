@@ -5,15 +5,21 @@ import 'package:reanban/controllers/FeedController.dart';
 import 'package:reanban/controllers/UserController.dart';
 import 'package:reanban/responsive.dart';
 
+enum SampleItem { itemOne, itemTwo, itemThree }
+
 class FeedScreen extends StatelessWidget {
   FeedScreen({super.key});
   final FeedController feedController = Get.put(FeedController());
+  List<String> list = <String>['One', 'Two', 'Three', 'Four'];
+  String dropdownValue = "One";
+  void menuClick(value, index) {
+    print(value + ": " + index.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          child: GetBuilder<FeedController>(
+      body: GetBuilder<FeedController>(
         builder: (_) => ListView.builder(
             itemCount: feedController.items.length,
             controller: feedController.scrollController,
@@ -43,7 +49,7 @@ class FeedScreen extends StatelessWidget {
                         SizedBox(
                             width: 100,
                             child: Image.asset("assets/images/logo.png")),
-                        Column(
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -57,10 +63,12 @@ class FeedScreen extends StatelessWidget {
                           ],
                         ),
                         const Spacer(),
-                        Icon(Icons.more_horiz)
+                        popMenu()
                       ],
                     ),
-                    Divider(),
+                    const Divider(
+                      color: Colors.grey,
+                    ),
                     Container(
                       height: 300,
                       decoration: BoxDecoration(
@@ -72,8 +80,10 @@ class FeedScreen extends StatelessWidget {
                             : null,
                       ),
                     ),
-                    Divider(),
-                    Row(
+                    const Divider(
+                      color: Colors.grey,
+                    ),
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
@@ -87,20 +97,20 @@ class FeedScreen extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Icon(Icons.fmd_good),
+                            Icon(Icons.message),
                             SizedBox(
                               width: 12,
                             ),
-                            Text('Like')
+                            Text('Comment')
                           ],
                         ),
                         Row(
                           children: [
-                            Icon(Icons.fmd_good),
+                            Icon(Icons.share),
                             SizedBox(
                               width: 12,
                             ),
-                            Text('Like')
+                            Text('share')
                           ],
                         )
                       ],
@@ -109,7 +119,46 @@ class FeedScreen extends StatelessWidget {
                 ),
               );
             }),
-      )),
+      ),
+    );
+  }
+
+  Widget dropdownWidget(index) {
+    return DropdownButton(
+      value: dropdownValue,
+      style: const TextStyle(color: Colors.deepPurple),
+      onChanged: (value) {
+        menuClick(value, index);
+      },
+      items: list.map((value) {
+        return DropdownMenuItem(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+    );
+  }
+
+  SampleItem? selectedMenu;
+  Widget popMenu() {
+    return PopupMenuButton<SampleItem>(
+      initialValue: selectedMenu,
+      // Callback that sets the selected popup menu item.
+      onSelected: (SampleItem item) {},
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+        const PopupMenuItem<SampleItem>(
+          value: SampleItem.itemOne,
+          child: Text('Item 1'),
+        ),
+        const PopupMenuItem<SampleItem>(
+          value: SampleItem.itemTwo,
+          child: Text('Item 2'),
+        ),
+        const PopupMenuItem<SampleItem>(
+          value: SampleItem.itemThree,
+          child: Text('Item 3'),
+        ),
+      ],
     );
   }
 }
