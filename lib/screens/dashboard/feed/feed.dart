@@ -4,6 +4,7 @@ import 'package:reanban/constants.dart';
 import 'package:reanban/controllers/FeedController.dart';
 import 'package:reanban/controllers/UserController.dart';
 import 'package:reanban/responsive.dart';
+import 'package:reanban/screens/dashboard/feed/comment.dart';
 
 enum SampleItem { itemOne, itemTwo, itemThree }
 
@@ -83,7 +84,7 @@ class FeedScreen extends StatelessWidget {
                     const Divider(
                       color: Colors.grey,
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
@@ -101,7 +102,13 @@ class FeedScreen extends StatelessWidget {
                             SizedBox(
                               width: 12,
                             ),
-                            Text('Comment')
+                            InkWell(
+                              onTap: () {
+                                Get.to(CommentScreen(),
+                                    arguments: feedController.items[index]);
+                              },
+                              child: Text('Comment'),
+                            )
                           ],
                         ),
                         Row(
