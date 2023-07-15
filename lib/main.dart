@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:reanban/controllers/SettingControler.dart';
 import 'package:reanban/routes/route.dart';
 import 'package:reanban/themes/themes.dart';
 import 'package:reanban/utils/platform_util.dart';
@@ -18,6 +19,7 @@ void main() async {
     }
   }
   await GetStorage.init();
+  Get.put(SettingController());
   runApp(MyApp());
 }
 

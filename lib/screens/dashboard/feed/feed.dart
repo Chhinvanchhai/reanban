@@ -50,7 +50,7 @@ class FeedScreen extends StatelessWidget {
                         SizedBox(
                             width: 100,
                             child: Image.asset("assets/images/logo.png")),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(

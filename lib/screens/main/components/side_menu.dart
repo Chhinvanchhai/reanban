@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:reanban/constants.dart';
+import 'package:reanban/controllers/SettingControler.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({Key? key, required this.menuClick}) : super(key: key);
@@ -11,6 +12,7 @@ class SideMenu extends StatefulWidget {
 }
 
 class _SideMenuState extends State<SideMenu> {
+  final SettingController _settingController = Get.find();
   var isDark = Get.isDarkMode;
   var selectedIndex = 0;
   void changeTheme() {
@@ -23,12 +25,16 @@ class _SideMenuState extends State<SideMenu> {
   @override
   void initState() {
     super.initState();
+    setState(() {
+      selectedIndex = _settingController.acitveMenu;
+    });
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // changeTheme();
     });
   }
 
   void menuClick(id) {
+    _settingController.setActive(id);
     setState(() {
       selectedIndex = id;
     });
