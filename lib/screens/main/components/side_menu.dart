@@ -167,7 +167,7 @@ class DrawerListTile extends StatelessWidget {
       ),
       title: Text(
         title.tr,
-        style: TextStyle(
+        style: const TextStyle(
             // color: !dark ? colorDark : colorLight,
             fontFamily: 'NiradeiRegular'),
       ),
