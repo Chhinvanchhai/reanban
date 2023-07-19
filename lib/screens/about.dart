@@ -25,7 +25,8 @@ class _AboutState extends State<About> {
 
   List<PlutoRow> rows = [];
 
-  List<PlutoRow> getItem() {
+  List<PlutoRow> getItem(page) {
+    feedController.pagination(page);
     List<PlutoRow> newRows = [];
     for (var element in feedController.items) {
       newRows.add(PlutoRow(cells: {
@@ -38,7 +39,6 @@ class _AboutState extends State<About> {
         'salary': PlutoCell(value: 300),
       }));
     }
-    print(newRows.toString());
     return newRows;
   }
 
@@ -130,11 +130,11 @@ class _AboutState extends State<About> {
     //     );
     //   });
     // }
-    // final page = request.page;
-    // const pageSize = 100;
+    final page = request.page;
+    const pageSize = 100;
     // final totalPage = (tempList.length / pageSize).ceil();
-    // final start = (page - 1) * pageSize;
-    // final end = start + pageSize;
+    final start = (page - 1) * pageSize;
+    final end = start + pageSize;
 
     // Iterable<PlutoRow> fetchedRows = tempList.getRange(
     //   max(0, start),
@@ -143,8 +143,8 @@ class _AboutState extends State<About> {
 
     await Future.delayed(const Duration(milliseconds: 500));
 
-    return Future.value(
-        PlutoLazyPaginationResponse(totalPage: 2, rows: getItem()));
+    return Future.value(PlutoLazyPaginationResponse(
+        totalPage: feedController.totalPage, rows: getItem(page)));
   }
 
   @override

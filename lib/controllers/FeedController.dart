@@ -7,8 +7,9 @@ import 'package:reanban/models/Feed.dart';
 
 class FeedController extends GetxController {
   var items = <Feed>[].obs;
-  var page = 1;
+  var page = 1, totalPage = 1;
   var loading = false;
+
   bool isLoadMore = true;
   final scrollController = ScrollController();
 
@@ -41,6 +42,7 @@ class FeedController extends GetxController {
     if (data['data']?.length == 0) {
       isLoadMore = false;
     }
+    totalPage = data["total"];
     items.addAll((data['data'] as List).map((i) => Feed.fromJson(i)).toList());
     update();
   }
