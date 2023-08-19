@@ -36,12 +36,14 @@ class FeedController extends GetxController {
   Future<void> updated() async {}
 
   Future<void> pagination(page) async {
-    var response = await Api.get(
-        "/api/admin/products/paginate?lang_id=1&sortBy=created_at&descending=false&page=${page}&rowsPerPage=10&rowsNumber=0");
+    var response =
+        await Api.get("/admin/products/pagination?page=${page}&rowsPerPage=10");
     var data = jsonDecode(response.body);
+    print(data);
     if (data['data']?.length == 0) {
       isLoadMore = false;
     }
+    print(data["total"]);
     totalPage = data["total"];
     items.addAll((data['data'] as List).map((i) => Feed.fromJson(i)).toList());
     update();

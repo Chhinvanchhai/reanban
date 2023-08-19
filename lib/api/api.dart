@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
-const baseUrl = "http://127.0.0.1:8000";
+const baseUrl = "http://127.0.0.1:8000/api/v1";
 
 class Api {
   static Future get(endpointUrl) async {

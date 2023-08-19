@@ -24,7 +24,9 @@ class Feed {
         title: json['name'],
         description: json['description'],
         content: json['content'],
-        image: json['image']?.length > 0 ? json['image'][0]['path'] : '',
+        image: json['images'] != null && json['images']?.length > 0
+            ? json['images'][0]['path']
+            : '',
         view: json['view'],
         commentId: json['commentId'],
         userId: json['userId'],

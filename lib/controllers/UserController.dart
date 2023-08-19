@@ -14,9 +14,9 @@ class UserController extends GetxController {
 
   logn(data) async {
     try {
-      var res = await Api.post("/api/admin/auth/login", data);
+      var res = await Api.post("/auth/login", data);
       statusCode.value = res.statusCode;
-      // print(res.statusCode);
+      print(res.body);
       return jsonDecode(res.body);
     } catch (e) {
       statusCode.value = 500;

@@ -3,8 +3,11 @@ import 'package:reanban/screens/about.dart';
 import 'package:reanban/screens/dashboard/Feed/feed.dart';
 import 'package:reanban/screens/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:reanban/screens/dashboard/products/products.dart';
+import 'package:reanban/screens/guide.dart';
 // import 'package:reanban/screens/guide.dart';
 import 'package:reanban/screens/header.dart';
+import 'package:reanban/screens/profile.dart';
 import 'components/side_menu.dart';
 
 import '../../responsive.dart';
@@ -19,7 +22,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var indexPage = 0;
-  List pages = [Dashboard(), FeedScreen(), About(), About()];
+  List pages = [Dashboard(), FeedScreen(), Profile(), Guide(), Products()];
 
   void _openDrawer() {
     _scaffoldKey.currentState!.openDrawer();

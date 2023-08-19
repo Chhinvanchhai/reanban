@@ -14,4 +14,6 @@ Map<String, String> get en => {
       "account": "Accounts",
       "history": "History",
       "feed": "Feed",
+      "category": "Categories",
+      "name": "Name",
     };

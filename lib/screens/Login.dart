@@ -22,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     var box = GetStorage();
     var res = await userController.logn(data);
+    print(res);
     if (userController.statusCode == 201 || userController.statusCode == 200) {
       Get.toNamed("/");
       box.write('user', res);

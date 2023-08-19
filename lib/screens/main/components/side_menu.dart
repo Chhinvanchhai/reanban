@@ -90,44 +90,21 @@ class _SideMenuState extends State<SideMenu> {
               },
             ),
             DrawerListTile(
+              title: 'products',
+              dark: isDark,
               selected: selectedIndex == 4 ? true : false,
+              svgIcon: 'assets/icons/menu_doc.svg',
+              press: () {
+                menuClick(4);
+              },
+            ),
+            DrawerListTile(
+              selected: selectedIndex == 5 ? true : false,
               title: 'Home',
               dark: isDark,
               svgIcon: 'assets/icons/menu_store.svg',
               press: () => {Get.toNamed('/home')},
             ),
-            DrawerListTile(
-              title: 'notifications',
-              dark: isDark,
-              selected: selectedIndex == 5 ? true : false,
-              svgIcon: 'assets/icons/menu_dashbord.svg',
-              press: () => {print('Click List')},
-            ),
-            DrawerListTile(
-              title: 'setting',
-              selected: selectedIndex == 6 ? true : false,
-              dark: isDark,
-              svgIcon: 'assets/icons/menu_setting.svg',
-              press: () => {print('Click List')},
-            ),
-            // ElevatedButton(
-            //   child: Text("Change Theme"),
-            //   onPressed: () {
-            //     changeTheme();
-            //   },
-            // ),
-            // ElevatedButton(
-            //   child: Text('English'),
-            //   onPressed: () {
-            //     Get.updateLocale(Locale('en', 'UK'));
-            //   },
-            // ),
-            // ElevatedButton(
-            //   child: Text('Khmer'),
-            //   onPressed: () {
-            //     Get.updateLocale(Locale('kh', 'KH'));
-            //   },
-            // ),
           ],
         ),
       ),
